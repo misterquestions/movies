@@ -3,7 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import path from 'path';
 
-import { MoviesModule } from './modules/movies/movies.module';
+import { MoviesModule } from '../modules/movies/movies.module';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -21,12 +21,13 @@ import { AppService } from './app.service';
           debug: !isProduction,
           playground: !isProduction,
           autoSchemaFile: path.join(__dirname, 'src/schema.gql'),
+          sortSchema: true,
         };
       },
     }),
     MoviesModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, App],
 })
 export class AppModule {}
