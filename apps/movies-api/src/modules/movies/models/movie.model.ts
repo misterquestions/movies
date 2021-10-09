@@ -8,7 +8,7 @@ export class Movie {
   @Field(() => Int)
   id: number;
 
-  @Column()
+  @Column({ type: 'varchar', length: 255 })
   @Field()
   name: string;
 
