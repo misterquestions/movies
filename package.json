@@ -5,7 +5,11 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "migration:run": "ts-node --project ./apps/movies-api/tsconfig.json -r tsconfig-paths/register node_modules/typeorm/cli.js migration:run",
+    "migration:revert": "ts-node --project ./apps/movies-api/tsconfig.json -r tsconfig-paths/register node_modules/typeorm/cli.js migration:revert",
+    "migration:create": "ts-node --project ./apps/movies-api/tsconfig.json -r tsconfig-paths/register node_modules/typeorm/cli.js migration:create",
+    "migration:generate": "ts-node --project ./apps/movies-api/tsconfig.json -r tsconfig-paths/register node_modules/typeorm/cli.js migration:generate"
   },
   "private": true,
   "dependencies": {
@@ -14,11 +18,14 @@
     "@nestjs/core": "^7.0.0",
     "@nestjs/graphql": "^9.0.6",
     "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/typeorm": "^8.0.2",
     "apollo-server-express": "^3.3.0",
     "graphql": "^15.6.1",
+    "mysql2": "^2.3.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.6.3",
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.0",
+    "typeorm": "^0.2.38"
   },
   "devDependencies": {
     "@nestjs/schematics": "^7.0.0",
