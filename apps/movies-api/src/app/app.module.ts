@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import path from 'path';
 
 import { MoviesModule } from '../modules/movies/movies.module';
@@ -15,7 +16,8 @@ import { AppService } from './app.service';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
-        const isProduction = configService.get('NODE_ENV') === 'production';
+        const currentEnv = configService.get<string>('NODE_ENV') || 'development';
+        const isProduction = currentEnv.toLowerCase() === 'production';
         
         return {
           debug: !isProduction,
@@ -25,9 +27,12 @@ import { AppService } from './app.service';
         };
       },
     }),
+    TypeOrmModule.forRoot({
+      entities: [path.join(__dirname, '**/**.entity{js,.ts}')],
+    }),
     MoviesModule,
   ],
   controllers: [AppController],
-  providers: [AppService, App],
+  providers: [AppService],
 })
 export class AppModule {}
