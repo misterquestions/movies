@@ -28,9 +28,7 @@ import { AppService } from './app.service';
         };
       },
     }),
-    TypeOrmModule.forRootAsync({
-      useFactory: () => typeormConfig,
-    }),
+    TypeOrmModule.forRoot(typeormConfig),
     MoviesModule,
   ],
   controllers: [AppController],

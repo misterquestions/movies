@@ -1,6 +1,7 @@
 import { Field, Float, Int, ObjectType } from "@nestjs/graphql";
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
+@Entity()
 @ObjectType()
 export class Movie extends BaseEntity {
   @PrimaryGeneratedColumn({ type: 'bigint' })
