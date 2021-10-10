@@ -1,7 +1,10 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import dotenv from 'dotenv';
 
-import { AddMovieTable1633841907261 } from '../../migrations/1633841907261-AddMovieTable';
+import {
+  AddMovieTable1633841907261,
+  RenameMovieColumns1633847197459,
+} from '../../migrations';
 import { Movie } from '../modules/movies/models/movie.model';
 
 if (process.env.NODE_ENV !== 'production') {
@@ -16,7 +19,7 @@ export const typeormConfig: TypeOrmModuleOptions = {
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DATABASE,
   entities: [Movie],
-  migrations: [AddMovieTable1633841907261],
+  migrations: [AddMovieTable1633841907261, RenameMovieColumns1633847197459],
   cli: {
     migrationsDir: 'apps/movies-api/migrations',
   },
