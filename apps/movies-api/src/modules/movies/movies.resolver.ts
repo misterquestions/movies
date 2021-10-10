@@ -1,14 +1,14 @@
-import { Query, Resolver } from "@nestjs/graphql";
+import { Args, Int, Query, Resolver } from "@nestjs/graphql";
 
 import { Movie } from "./models/movie.model";
 import { MoviesService } from "./movies.service";
 
-@Resolver(of => Movie)
+@Resolver(() => Movie)
 export class MoviesResolver {
   constructor(private readonly moviesService: MoviesService) {}
 
-  @Query(returns => Movie)
-  async movie(): Promise<Movie> {
-    return { cover: '', name: 'asasd', rating: 4.5, releaseDate: new Date() };
+  @Query(() => Movie)
+  async movie(@Args('id', { type: () => Int }) movieId: number): Promise<Movie> {
+    return this.moviesService.getMovieById(movieId);
   }
 }
