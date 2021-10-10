@@ -6,10 +6,9 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "migration:run": "ts-node --project ./apps/movies-api/tsconfig.json -r tsconfig-paths/register node_modules/typeorm/cli.js migration:run",
-    "migration:revert": "ts-node --project ./apps/movies-api/tsconfig.json -r tsconfig-paths/register node_modules/typeorm/cli.js migration:revert",
-    "migration:create": "ts-node --project ./apps/movies-api/tsconfig.json -r tsconfig-paths/register node_modules/typeorm/cli.js migration:create",
-    "migration:generate": "ts-node --project ./apps/movies-api/tsconfig.json -r tsconfig-paths/register node_modules/typeorm/cli.js migration:generate"
+    "api:typeorm:cli": "ts-node --project ./apps/movies-api/tsconfig.orm.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js -f ./apps/movies-api/src/config/typeorm-migrations.config.ts",
+    "api:migration:generate": "npm run api:typeorm:cli -- migration:generate -n",
+    "api:migration:run": "npm run api:typeorm:cli -- migration:run -n"
   },
   "private": true,
   "dependencies": {

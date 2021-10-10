@@ -4,6 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import path from 'path';
 
+import { config as typeormConfig } from '../config/typeorm.config';
 import { MoviesModule } from '../modules/movies/movies.module';
 
 import { AppController } from './app.controller';
@@ -27,9 +28,7 @@ import { AppService } from './app.service';
         };
       },
     }),
-    TypeOrmModule.forRoot({
-      entities: [path.join(__dirname, '**/**.entity{js,.ts}')],
-    }),
+    TypeOrmModule.forRoot(typeormConfig),
     MoviesModule,
   ],
   controllers: [AppController],
