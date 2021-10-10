@@ -8,7 +8,7 @@
     "test": "nx test",
     "api:typeorm:cli": "ts-node --project ./apps/movies-api/tsconfig.orm.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js -f ./apps/movies-api/src/config/typeorm-migrations.config.ts",
     "api:migration:generate": "npm run api:typeorm:cli -- migration:generate -n",
-    "api:migration:run": "npm run api:typeorm:cli -- migration:run -n"
+    "api:migration:run": "npm run api:typeorm:cli -- migration:run"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +19,8 @@
     "@nestjs/platform-express": "^7.0.0",
     "@nestjs/typeorm": "^8.0.2",
     "apollo-server-express": "^3.3.0",
+    "class-transformer": "^0.4.0",
+    "class-validator": "^0.13.1",
     "graphql": "^15.6.1",
     "mysql2": "^2.3.0",
     "reflect-metadata": "^0.1.13",
