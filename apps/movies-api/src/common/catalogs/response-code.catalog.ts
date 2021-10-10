@@ -1,4 +1,6 @@
 export enum ResponseCode {
   Success,
-  MovieNotFoundWithID = 400,
+  InternalExecutionError = 100,
+  MovieCoverUploadError = 400,
+  MovieNotFoundWithID,
 }

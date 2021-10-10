@@ -1,6 +1,6 @@
 import { Field, InputType, Int } from "@nestjs/graphql";
 
-@InputType()
+@InputType('FindMovieByIdInput')
 export class FindMovieByIdDTO {
   @Field(() => Int)
   id: number;

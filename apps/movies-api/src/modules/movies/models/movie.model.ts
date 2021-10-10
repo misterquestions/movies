@@ -12,13 +12,13 @@ export class Movie extends BaseEntity {
   @Field()
   name: string;
 
-  @Column({ type: 'datetime' })
+  @Column({ name: 'release_date', type: 'datetime' })
   @Field(() => Date)
   releaseDate: Date;
 
-  @Column()
+  @Column({ name: 'cover_url' })
   @Field()
-  cover: string;
+  coverURL: string;
 
   @Column({ type: 'float' })
   @Field(() => Float)
