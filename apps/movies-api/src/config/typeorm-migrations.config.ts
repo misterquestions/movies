@@ -1,3 +1,3 @@
-import { config } from './typeorm.config';
+import { typeormConfig } from './typeorm.config';
 
-export = config;
+export = typeormConfig;

@@ -1,14 +1,14 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import dotenv from 'dotenv';
-import path from 'path';
 
+import { AddMovieTable1633841907261 } from '../../migrations/1633841907261-AddMovieTable';
 import { Movie } from '../modules/movies/models/movie.model';
 
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
 }
 
-export const config: TypeOrmModuleOptions = {
+export const typeormConfig: TypeOrmModuleOptions = {
   type: 'mysql',
   host: process.env.MYSQL_HOST,
   port: parseInt(process.env.MYSQL_PORT, 10),
@@ -16,7 +16,7 @@ export const config: TypeOrmModuleOptions = {
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DATABASE,
   entities: [Movie],
-  migrations: [path.join(__dirname, '../**/*.migration{.ts,.js}')],
+  migrations: [AddMovieTable1633841907261],
   cli: {
     migrationsDir: 'apps/movies-api/migrations',
   },
