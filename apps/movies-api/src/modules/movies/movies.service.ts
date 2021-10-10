@@ -1,16 +1,28 @@
-import { Injectable } from "@nestjs/common";
-import { Movie } from "./models/movie.model";
+import { Injectable } from '@nestjs/common';
+import { ResponseCode } from '../../common/catalogs/response-code.catalog';
+import { ResponseMessage } from '../../common/catalogs/response-message.catalog';
+import { FindMovieByIdDTO } from './dtos/find-movie-by-id.dto';
+import { MovieResponse } from './dtos/movie-response.dto';
+import { Movie } from './models/movie.model';
 
 @Injectable()
 export class MoviesService {
-  
-  async getMovieById(movieId: number): Promise<Movie> {
-    const movie = Movie.findOne(movieId);
+  async getMovieById(input: FindMovieByIdDTO): Promise<MovieResponse> {
+    const movie = await Movie.findOne(input.id);
 
     if (!movie) {
-      throw new Error(`No movie found for ID: ${movieId}`);
+      return {
+        code: ResponseCode.MovieNotFoundWithID,
+        message: ResponseMessage.MovieNotFoundWithID,
+      };
     }
 
-    return movie;
+    return {
+      code: ResponseCode.Success,
+      message: ResponseMessage.Success,
+      data: movie,
+    };
   }
+
+  async get
 }
