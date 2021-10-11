@@ -1,15 +1,22 @@
-import React from 'react';
-import { Route, Link } from 'react-router-dom';
-import { AppBar, Button, IconButton, Toolbar, Typography } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import React from 'react';
+import { Route } from 'react-router';
+import { Switch } from 'react-router-dom';
+
+import DefaultLayout from '../layouts/DefaultLayout';
+import AddMoviePage from '../pages/AddMoviePage';
+import IndexPage from '../pages/IndexPage';
 
 export const App: React.FC = () => {
   return (
-    
+    <Switch>
+      <DefaultLayout>
+        <Route path="/add-movie" exact component={AddMoviePage} />
+        <Route path="/" exact component={IndexPage} />
+      </DefaultLayout>
+    </Switch>
   );
 };

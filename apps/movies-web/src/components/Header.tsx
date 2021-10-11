@@ -1,4 +1,8 @@
-export const Header: React.FC = () => {
+import { AppBar, Button, IconButton, Toolbar, Typography } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import React from 'react';
+
+const Header: React.FC = () => {
   return (
     <AppBar position="static">
       <Toolbar>
@@ -12,10 +16,13 @@ export const Header: React.FC = () => {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          News
+          Movies
         </Typography>
+        
         <Button color="inherit">Login</Button>
       </Toolbar>
     </AppBar>
   );
-}
+};
+
+export default Header;
