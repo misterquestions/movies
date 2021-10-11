@@ -1,0 +1,13 @@
+overwrite: true
+schema: "${GRAPHQL_API_URL}"
+documents: "apps/movies-web/src/api/operations/**/*.graphql"
+generates:
+  apps/movies-web/src/api/generated/sdk.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+      - "typescript-graphql-files-modules"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"
