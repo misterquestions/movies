@@ -8,7 +8,7 @@ import { amber, deepOrange, grey } from '@mui/material/colors';
 import { ThemeProvider } from '@mui/system';
 import React from 'react';
 
-export const getDesignTokens = (mode: PaletteMode) => ({
+const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
     mode,
     ...(mode === 'light'
@@ -37,20 +37,41 @@ export const getDesignTokens = (mode: PaletteMode) => ({
   },
 });
 
+interface ColorModeContextProps {
+  toggleColorMode: () => void;
+}
+
+export const ColorModeContext = React.createContext<ColorModeContextProps>({
+  toggleColorMode: () => null,
+});
+
 export const AppTheme: React.FC = ({ children }) => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const [currentMode, setCurrentMode] = React.useState<PaletteMode>(
     prefersDarkMode ? 'dark' : 'light'
   );
+
+  const colorMode = React.useMemo<ColorModeContextProps>(
+    () => ({
+      toggleColorMode: () =>
+        setCurrentMode((previousMode) =>
+          previousMode === 'light' ? 'dark' : 'light'
+        ),
+    }),
+    []
+  );
+
   const theme = React.useMemo(
     () => createTheme(getDesignTokens(currentMode)),
     [currentMode]
   );
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {children}
-    </ThemeProvider>
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 };
