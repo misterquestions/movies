@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
+import { ThrottlerModule } from '@nestjs/throttler';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import path from 'path';
 
@@ -13,6 +14,10 @@ import { AppService } from './app.service';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
+    ThrottlerModule.forRoot({
+      limit: 10,
+      ttl: 60,
+    }),
     GraphQLModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -25,6 +30,10 @@ import { AppService } from './app.service';
           playground: !isProduction,
           autoSchemaFile: path.join(__dirname, 'src/schema.gql'),
           sortSchema: true,
+          cors: {
+            origin: '*',
+            credentials: true,
+          },
         };
       },
     }),
