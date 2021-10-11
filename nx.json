@@ -29,6 +29,13 @@
   "projects": {
     "movies-api": {
       "tags": []
+    },
+    "movies-web": {
+      "tags": []
+    },
+    "movies-web-e2e": {
+      "tags": [],
+      "implicitDependencies": ["movies-web"]
     }
   }
 }
