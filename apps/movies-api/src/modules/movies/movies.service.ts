@@ -2,7 +2,6 @@ import { Injectable, Logger } from '@nestjs/common';
 
 import { ResponseCode } from '../../common/catalogs/response-code.catalog';
 import { ResponseMessage } from '../../common/catalogs/response-message.catalog';
-import { FileUploadService } from '../file-upload/file-upload.service';
 import { MovieCoverService } from '../movies-cover/movie-cover.service';
 
 import { CreateMovieDTO } from './dtos/create-movie.dto';
