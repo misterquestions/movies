@@ -7,6 +7,8 @@ generates:
       - "typescript"
       - "typescript-operations"
       - "typescript-react-apollo"
+  apps/movies-web/api-graphql.d.ts:
+    plugins:
       - "typescript-graphql-files-modules"
   ./graphql.schema.json:
     plugins:

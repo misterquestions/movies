@@ -1,0 +1,13 @@
+mutation createMovie($input: CreateMovieInput!) {
+  createMovie(input: $input) {
+    code
+    message
+    data {
+      id
+      name
+      coverURL
+      rating
+      releaseDate
+    }
+  }
+}

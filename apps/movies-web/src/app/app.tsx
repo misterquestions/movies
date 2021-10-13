@@ -7,14 +7,12 @@ import { Route } from 'react-router';
 import { Switch } from 'react-router-dom';
 
 import DefaultLayout from '../layouts/DefaultLayout';
-import AddMoviePage from '../pages/AddMoviePage';
 import IndexPage from '../pages/IndexPage';
 
 export const App: React.FC = () => {
   return (
     <Switch>
       <DefaultLayout>
-        <Route path="/add-movie" exact component={AddMoviePage} />
         <Route path="/" exact component={IndexPage} />
       </DefaultLayout>
     </Switch>

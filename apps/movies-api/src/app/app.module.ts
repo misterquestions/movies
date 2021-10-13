@@ -31,7 +31,7 @@ import { AppService } from './app.service';
           autoSchemaFile: path.join(__dirname, 'src/schema.gql'),
           sortSchema: true,
           cors: {
-            origin: '*',
+            origin: 'http://localhost:3333',
             credentials: true,
           },
         };
