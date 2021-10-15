@@ -1,9 +1,10 @@
 import { AddPhotoAlternate } from '@mui/icons-material';
-import { Grid, Input, Paper, Typography } from '@mui/material';
+import { Input, InputProps, Paper, Typography } from '@mui/material';
 import React from 'react';
 
 interface ImageUploadProps {
   onChange?: (file: SelectedFile | SelectedFile[] | null) => void;
+  inputProps?: InputProps;
   multiple?: boolean;
 }
 
@@ -18,7 +19,7 @@ const ImageUpload: React.FC<ImageUploadProps> = (props) => {
   );
 
   const handleFileChange = (
-    event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     if (event) {
       const inputElement = event.target as HTMLInputElement;
@@ -36,6 +37,8 @@ const ImageUpload: React.FC<ImageUploadProps> = (props) => {
         };
 
         props.onChange && props.onChange(fileData);
+        props.inputProps && props.inputProps.onChange && props.inputProps.onChange(event);
+
         setCurrentFile(fileData);
       }
     }
@@ -89,6 +92,7 @@ const ImageUpload: React.FC<ImageUploadProps> = (props) => {
         )}
       </label>
       <Input
+        {...props.inputProps}
         id="cover-photo"
         type="file"
         onChange={handleFileChange}
