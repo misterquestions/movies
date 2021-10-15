@@ -1,5 +1,5 @@
 overwrite: true
-schema: "${GRAPHQL_API_URL}"
+schema: "${REACT_APP_GRAPHQL_API_URL}"
 documents: "apps/movies-web/src/api/operations/**/*.graphql"
 generates:
   apps/movies-web/src/api/generated/sdk.tsx:
