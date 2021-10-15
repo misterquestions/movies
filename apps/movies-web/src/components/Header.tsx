@@ -4,6 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react';
 import AddMovieForm from './AddMovieForm';
 
+// Todo: Add darkmode toggle
 const Header: React.FC = () => {
   const [addMovieOpen, setAddMovieOpen] = React.useState(false);
 

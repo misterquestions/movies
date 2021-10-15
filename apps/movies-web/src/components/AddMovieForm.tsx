@@ -1,6 +1,7 @@
 import { AddPhotoAlternate } from '@mui/icons-material';
 import { DatePicker } from '@mui/lab';
 import {
+  Alert,
   Button,
   Dialog,
   DialogActions,
@@ -8,6 +9,7 @@ import {
   DialogContentText,
   DialogTitle,
   Grid,
+  LinearProgress,
   TextField,
 } from '@mui/material';
 import React from 'react';
@@ -33,6 +35,7 @@ const AddMovieForm: React.FC<AddMovieFormProps> = (props) => {
     useCreateMovieMutation();
 
   const addMovieSubmit: SubmitHandler<AddMovieFormData> = (movieData) => {
+    console.log('Sending request for movie');
     createMovieMutation({
       variables: {
         input: {
@@ -42,6 +45,13 @@ const AddMovieForm: React.FC<AddMovieFormProps> = (props) => {
           cover: movieData.cover,
         },
       },
+      onCompleted: (data) => {
+        // Todo: Add movie to list from global state
+        setTimeout(() => {
+          if (props.open) props.onClose();
+        }, 2500);
+      },
+      onError: (error) => console.log(error),
     });
   };
 
@@ -55,7 +65,22 @@ const AddMovieForm: React.FC<AddMovieFormProps> = (props) => {
             details are correct before submitting.
           </DialogContentText>
 
-          <Grid container spacing={2} marginY={2}>
+          <Grid container spacing={2} marginY={1}>
+            <Grid item xs={12}>
+              {data && (
+                <Alert severity="success">
+                  Se ha agregado la película exitosamente
+                </Alert>
+              )}
+              {error && (
+                <Alert severity="error">
+                  Ha ocurrido un fallo al ejecutar la operación:
+                </Alert>
+              )}
+
+              {loading && <LinearProgress color="primary" />}
+            </Grid>
+
             <Grid item xs={12} md={4}>
               <Controller
                 name="cover"

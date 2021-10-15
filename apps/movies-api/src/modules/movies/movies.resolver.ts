@@ -14,6 +14,7 @@ export class MoviesResolver {
   async createMovie(
     @Args('input') input: CreateMovieDTO
   ): Promise<MovieResponse> {
+    console.log('movie request')
     return this.moviesService.createMovie(input);
   }
 
