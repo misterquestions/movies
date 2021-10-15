@@ -1,9 +1,9 @@
+import path from 'path';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import path from 'path';
 
 import { typeormConfig } from '../config/typeorm.config';
 import { MoviesModule } from '../modules/movies/movies.module';

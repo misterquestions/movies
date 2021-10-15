@@ -9,7 +9,6 @@ import React from 'react';
 import { Route } from 'react-router';
 import { BrowserRouter, Switch } from 'react-router-dom';
 
-import DefaultLayout from '../layouts/DefaultLayout';
 import IndexPage from '../pages/IndexPage';
 import { AppTheme } from '../themes/AppTheme';
 

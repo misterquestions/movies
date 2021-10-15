@@ -23,6 +23,21 @@
               }
             ]
           }
+        ],
+        "import/order": [
+          "error",
+          {
+            "groups": [
+              "builtin",
+              "external",
+              "parent",
+              "internal",
+              "sibling",
+              "index",
+              "object",
+              "type"
+            ]
+          }
         ]
       }
     },

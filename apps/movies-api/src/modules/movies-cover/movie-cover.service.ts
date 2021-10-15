@@ -1,7 +1,7 @@
+import stream from 'stream';
 import { Injectable, Logger } from '@nestjs/common';
 import { FileUpload } from 'graphql-upload';
 import { nanoid } from 'nanoid';
-import stream from 'stream';
 
 import { FileUploadService } from '../file-upload/file-upload.service';
 
