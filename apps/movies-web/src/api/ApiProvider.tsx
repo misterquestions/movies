@@ -9,10 +9,8 @@ import {
 import React from 'react';
 
 const httpLink = new HttpLink({
-  uri: process.env.REACT_APP_GRAPHQL_ENDPOINT,
+  uri: process.env.REACT_APP_GRAPHQL_ENDPOINT || 'http://localhost:3333/graphql',
 });
-
-console.log('uri', process.env.REACT_APP_GRAPHQL_ENDPOINT)
 
 const testMiddleware = new ApolloLink((operation, forward) => {
   console.log('Making request ', operation.operationName);
